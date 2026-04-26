@@ -1,11 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const repoName = globalThis.process?.env?.GITHUB_REPOSITORY?.split('/')[1] ?? ''
-const isUserOrOrgSite = repoName.endsWith('.github.io')
-const base = globalThis.process?.env?.GITHUB_ACTIONS
-  ? (isUserOrOrgSite ? '/' : `/${repoName}/`)
-  : '/'
+// For user/organization GitHub Pages sites, base should be '/'
+// For project sites, base should be '/{repo-name}/'
+const base = process.env.GITHUB_ACTIONS ? '/' : '/'
 
 // https://vite.dev/config/
 export default defineConfig({

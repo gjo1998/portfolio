@@ -27,6 +27,8 @@ const profile = {
 
 const heroHeadline = 'Frontend / Full Stack Developer'
 const heroSubheadline = 'Building premium, scalable web products with modern frontend and full stack engineering.'
+const profileImageUrl = `${import.meta.env.BASE_URL}george-profile.jpeg`
+const resumeUrl = `${import.meta.env.BASE_URL}GEORGE_2026.pdf`
 
 const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`
 
@@ -287,7 +289,7 @@ function App() {
         <section id="home" className="section-offset pb-10 pt-12 sm:pb-14 sm:pt-16">
           <div className="shell">
             <div className="panel hero-panel overflow-hidden p-6 sm:p-8 lg:p-10">
-              <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="grid items-center gap-8">
                 <div>
                   <motion.div
                     variants={reveal}
@@ -345,7 +347,7 @@ function App() {
                     <ArrowRight size={16} />
                   </a>
                   <a
-                    href="/GEORGE_2026.pdf"
+                    href={resumeUrl}
                     download
                     className="inline-flex items-center gap-2 rounded-md border border-line bg-surface px-5 py-3 text-sm font-semibold text-text transition hover:border-accent/50 hover:bg-surface-soft"
                   >
@@ -354,23 +356,6 @@ function App() {
                   </a>
                   </motion.div>
                 </div>
-
-                <motion.div
-                  variants={reveal}
-                  initial="hidden"
-                  animate="visible"
-                  custom={0.2}
-                  className="mx-auto w-full max-w-[260px] sm:max-w-[280px] lg:justify-self-end"
-                >
-                  <div className="overflow-hidden rounded-xl border border-line bg-surface-soft p-2 shadow-panel">
-                    <img
-                      src="/george-profile.jpeg"
-                      alt="George K. J portrait"
-                      className="h-72 w-full rounded-lg object-cover object-[center_28%] sm:h-80"
-                      loading="eager"
-                    />
-                  </div>
-                </motion.div>
               </div>
             </div>
 
@@ -689,7 +674,7 @@ function App() {
                     Email Me
                   </a>
                   <a
-                    href="/GEORGE_2026.pdf"
+                    href={resumeUrl}
                     download
                     className="inline-flex items-center gap-2 rounded-md border border-line bg-surface px-5 py-3 text-sm font-semibold text-text transition hover:border-accent/50 hover:bg-surface-soft"
                   >
