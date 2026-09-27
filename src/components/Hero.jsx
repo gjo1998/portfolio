@@ -4,7 +4,7 @@ import { Reveal } from './Reveal'
 
 export function Hero() {
   return (
-    <section id="top" className="relative pb-20 pt-32 sm:pb-28 sm:pt-44">
+    <section id="top" className="relative pb-20 pt-32 sm:pb-28 sm:pt-40 lg:pt-36">
       <div className="shell">
         <Reveal onMount className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs text-muted">
@@ -16,7 +16,7 @@ export function Hero() {
 
         <div className="mt-10 grid items-end gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-8 lg:col-span-9">
-            <Reveal onMount delay={0.08} as="h1" className="display text-[clamp(2.75rem,11vw,3.5rem)] md:text-[7vw] lg:text-[clamp(5rem,9vw,8.5rem)]">
+            <Reveal onMount delay={0.08} as="h1" className="display text-[clamp(2.75rem,11vw,3.5rem)] md:text-[7vw] lg:text-[clamp(4.5rem,min(7.2vw,12.5vh),6.25rem)]">
               I build web products
               <br />
               that feel <em className="text-accent">effortless.</em>

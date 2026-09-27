@@ -46,7 +46,6 @@ export const featuredProject = {
     'A complete digital home for a counselling, psychotherapy and training centre in Kerala: a calm public website, a guided online booking flow, and a private admin console that runs the practice day to day.',
   images: {
     home: { ...responsiveShot('levshema-home'), alt: 'Lev Shema home page with the headline “Healing minds, strengthening relationships.”' },
-    booking: { ...responsiveShot('levshema-book'), alt: 'Lev Shema booking flow, step one of four: choosing the kind of support.' },
   },
   pillars: [
     {
