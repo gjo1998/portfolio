@@ -57,7 +57,12 @@ export function FeaturedProject() {
         </div>
 
         <Reveal delay={0.1} y={48} className="mt-16">
-          <BrowserFrame {...project.images.home} domain={project.domain} href={project.url} />
+          <BrowserFrame
+            {...project.images.home}
+            sizes="(min-width: 1280px) 1184px, 100vw"
+            domain={project.domain}
+            href={project.url}
+          />
         </Reveal>
 
         <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
@@ -91,7 +96,12 @@ export function FeaturedProject() {
           </Reveal>
 
           <Reveal delay={0.12} y={48} className="lg:col-span-7">
-            <BrowserFrame {...project.images.booking} domain={`${project.domain}/book`} href={`${project.url}/book`} />
+            <BrowserFrame
+              {...project.images.booking}
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              domain={`${project.domain}/book`}
+              href={`${project.url}/book`}
+            />
           </Reveal>
         </div>
 

@@ -1,4 +1,4 @@
-export function BrowserFrame({ src, alt, domain, href, className = '' }) {
+export function BrowserFrame({ src, srcSet, sizes = '100vw', alt, domain, href, className = '' }) {
   return (
     <a
       href={href}
@@ -13,16 +13,19 @@ export function BrowserFrame({ src, alt, domain, href, className = '' }) {
           <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
           <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
         </span>
-        <span className="mx-auto rounded-md bg-page px-3 py-1 font-mono text-[11px] text-faint">{domain}</span>
+        <span className="mx-auto rounded-md bg-page px-3 py-1 font-mono text-xs text-faint">{domain}</span>
         <span className="w-10" aria-hidden="true" />
       </div>
       <div className="overflow-hidden">
         <img
           src={src}
+          srcSet={srcSet}
+          sizes={sizes}
           alt={alt}
           width="1440"
           height="900"
           loading="lazy"
+          decoding="async"
           className="block w-full transition duration-[1200ms] ease-out group-hover:scale-[1.02]"
         />
       </div>

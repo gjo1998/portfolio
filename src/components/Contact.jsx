@@ -1,6 +1,33 @@
-import { ArrowUpRight, Download } from 'lucide-react'
-import { gmailComposeUrl, profile, socialLinks } from '../data/content'
+import { useEffect, useState } from 'react'
+import { ArrowUpRight, Check, Copy, FileText } from 'lucide-react'
+import { mailtoUrl, profile, socialLinks } from '../data/content'
 import { Reveal, SectionLabel } from './Reveal'
+
+function CopyEmailButton() {
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    if (!copied) return
+    const timer = setTimeout(() => setCopied(false), 2000)
+    return () => clearTimeout(timer)
+  }, [copied])
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email)
+      setCopied(true)
+    } catch {
+      // Clipboard can be blocked (insecure context, permissions); the mailto link still works.
+    }
+  }
+
+  return (
+    <button type="button" onClick={copy} className="btn-ghost min-h-11 px-4 py-2">
+      {copied ? <Check size={14} className="text-status" /> : <Copy size={14} />}
+      <span aria-live="polite">{copied ? 'Copied' : 'Copy email'}</span>
+    </button>
+  )
+}
 
 export function Contact() {
   return (
@@ -22,24 +49,30 @@ export function Contact() {
               making and I&rsquo;ll reply within a day.
             </p>
             <a
-              href={gmailComposeUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group mt-8 inline-flex items-center gap-3 font-display text-3xl transition-colors hover:text-accent sm:text-5xl"
+              href={mailtoUrl}
+              className="group mt-8 inline-flex items-center gap-3 font-display text-[clamp(1.5rem,6.5vw,3rem)] leading-tight transition-colors hover:text-accent"
             >
-              <span className="link-underline break-all">{profile.email}</span>
-              <ArrowUpRight className="flex-none transition duration-300 group-hover:rotate-45" size={32} />
+              <span className="link-underline break-words">{profile.email}</span>
+              <ArrowUpRight className="flex-none transition duration-300 group-hover:rotate-45" size={28} />
             </a>
+            <div className="mt-6">
+              <CopyEmailButton />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 lg:col-span-5">
             <div>
               <p className="eyebrow">Elsewhere</p>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-3">
                 {socialLinks.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} target="_blank" rel="noreferrer" className="link-underline text-text">
-                      {link.label}
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex min-h-11 items-center"
+                    >
+                      <span className="link-underline text-text">{link.label}</span>
                     </a>
                   </li>
                 ))}
@@ -47,17 +80,17 @@ export function Contact() {
             </div>
             <div>
               <p className="eyebrow">Direct</p>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-3">
                 <li>
-                  <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="link-underline text-text">
-                    {profile.phone}
+                  <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="inline-flex min-h-11 items-center">
+                    <span className="link-underline text-text">{profile.phone}</span>
                   </a>
                 </li>
-                <li className="text-muted">{profile.location}</li>
+                <li className="py-2 text-muted">{profile.location}</li>
               </ul>
-              <a href={profile.resume} download className="btn-ghost mt-6 px-4 py-2">
-                <Download size={14} />
-                Résumé
+              <a href={profile.resume} target="_blank" rel="noreferrer" className="btn-ghost mt-4 min-h-11 px-4 py-2">
+                <FileText size={14} />
+                View résumé
               </a>
             </div>
           </div>

@@ -8,7 +8,7 @@ export function Experience() {
         <Reveal className="lg:col-span-4">
           <SectionLabel index="02">Experience</SectionLabel>
           <h2 className="display mt-8 text-5xl sm:text-6xl">
-            Four years inside <em className="text-accent">product teams.</em>
+            Inside <em className="text-accent">product teams.</em>
           </h2>
           <p className="mt-6 leading-relaxed text-muted">
             API-driven products, migrations and performance work, shipped in Agile teams where clean,

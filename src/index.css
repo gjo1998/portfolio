@@ -3,35 +3,40 @@
 @tailwind utilities;
 
 @layer base {
-  /* Dark is the default look; `.light` on <html> switches to the paper theme. */
+  /* Light "paper" is the default look; `.dark` on <html> switches to the night theme.
+     Every text token meets WCAG AA (4.5:1) against --page. */
   :root {
-    --page: #0a0a0b;
-    --surface: #111113;
-    --surface-2: #18181b;
-    --text: #f3efe7;
-    --muted: #a8a399;
-    --faint: #6f6b64;
-    --line: rgba(243, 239, 231, 0.09);
-    --line-strong: rgba(243, 239, 231, 0.18);
-    --accent: #e3b877;
-    --accent-ink: #1a1408;
-    --glow: rgba(227, 184, 119, 0.1);
-    color-scheme: dark;
-  }
-
-  :root.light {
     --page: #f5f2ec;
     --surface: #fbf9f5;
     --surface-2: #efebe3;
     --text: #151412;
     --muted: #5d5850;
-    --faint: #8f897e;
+    --faint: #6e695f; /* 4.8:1 */
     --line: rgba(21, 20, 18, 0.1);
     --line-strong: rgba(21, 20, 18, 0.2);
-    --accent: #9c6a1c;
+    --accent: #87591a; /* 5.3:1 */
     --accent-ink: #ffffff;
-    --glow: rgba(156, 106, 28, 0.08);
+    --glow: rgba(135, 89, 26, 0.08);
+    --status: #059669;
+    --shadow-frame: 0 40px 80px -40px rgba(60, 44, 20, 0.28), 0 12px 24px -16px rgba(60, 44, 20, 0.18);
     color-scheme: light;
+  }
+
+  :root.dark {
+    --page: #0a0a0b;
+    --surface: #111113;
+    --surface-2: #18181b;
+    --text: #f3efe7;
+    --muted: #a8a399;
+    --faint: #8a857c; /* 5.4:1 */
+    --line: rgba(243, 239, 231, 0.09);
+    --line-strong: rgba(243, 239, 231, 0.18);
+    --accent: #e3b877;
+    --accent-ink: #1a1408;
+    --glow: rgba(227, 184, 119, 0.1);
+    --status: #34d399;
+    --shadow-frame: 0 40px 80px -40px rgba(0, 0, 0, 0.55), 0 12px 24px -16px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
   }
 
   html {
@@ -85,7 +90,7 @@
   }
 
   .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-faint;
+    @apply font-mono text-xs uppercase tracking-[0.16em] text-faint;
   }
 
   .display {

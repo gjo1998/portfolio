@@ -1,16 +1,29 @@
-# React + Vite
+# George K. J — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of George K. J, frontend & full stack developer (Angular, React, Node.js) based in Kerala, India.
 
-Currently, two official plugins are available:
+**Live:** https://gjo1998.github.io/portfolio/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Features a case study of [Lev Shema](https://levshema.com), a counselling centre website with an online booking flow and an admin console.
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + Vite
+- Tailwind CSS with theme tokens (light by default, with a dark theme toggle)
+- Framer Motion for scroll reveals (respects `prefers-reduced-motion`)
+- Self-hosted fonts via Fontsource (Instrument Serif, Inter Tight, JetBrains Mono)
 
-## Expanding the ESLint configuration
+## Develop
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # production build to dist/
+npm run lint
+```
+
+All copy lives in [`src/data/content.js`](src/data/content.js). Edit it there instead of in the components.
+
+## Deploy
+
+Pushing to `main` builds the site and deploys it to GitHub Pages via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).

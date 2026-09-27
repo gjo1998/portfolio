@@ -1,4 +1,4 @@
-import { ArrowDownRight, Download } from 'lucide-react'
+import { ArrowDownRight, FileText } from 'lucide-react'
 import { featuredProject, heroStats, profile } from '../data/content'
 import { Reveal } from './Reveal'
 
@@ -8,7 +8,7 @@ export function Hero() {
       <div className="shell">
         <Reveal onMount className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs text-muted">
-            <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-status" />
             Available for new projects
           </span>
           <span className="eyebrow">{profile.location}</span>
@@ -24,9 +24,8 @@ export function Hero() {
 
             <Reveal onMount delay={0.18} className="mt-10 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
               <p>
-                I&rsquo;m {profile.name}, a frontend &amp; full stack developer. For four years I&rsquo;ve
-                shipped fast, maintainable Angular and React apps backed by Node.js and SQL, for product teams
-                and for clients like{' '}
+                I&rsquo;m {profile.name}, a frontend &amp; full stack developer. I ship fast, maintainable
+                Angular and React apps backed by Node.js and SQL, for product teams and for clients like{' '}
                 <a
                   href={featuredProject.url}
                   target="_blank"
@@ -44,9 +43,9 @@ export function Hero() {
                 View selected work
                 <ArrowDownRight size={16} />
               </a>
-              <a href={profile.resume} download className="btn-ghost">
-                <Download size={15} />
-                Résumé
+              <a href={profile.resume} target="_blank" rel="noreferrer" className="btn-ghost">
+                <FileText size={15} />
+                View résumé
               </a>
             </Reveal>
           </div>
@@ -58,8 +57,8 @@ export function Hero() {
                   src={profile.photo}
                   alt={`Portrait of ${profile.name}`}
                   width="520"
-                  height="640"
-                  className="aspect-[4/5] w-full object-cover grayscale-[35%] transition duration-700 hover:grayscale-0"
+                  height="693"
+                  className="aspect-[4/5] w-full object-cover"
                 />
               </div>
               <figcaption className="eyebrow mt-3 flex justify-between gap-4">

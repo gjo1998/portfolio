@@ -19,9 +19,10 @@ export default {
         'line-strong': 'var(--line-strong)',
         accent: 'var(--accent)',
         'accent-ink': 'var(--accent-ink)',
+        status: 'var(--status)',
       },
       boxShadow: {
-        frame: '0 40px 80px -40px rgba(0, 0, 0, 0.55), 0 12px 24px -16px rgba(0, 0, 0, 0.35)',
+        frame: 'var(--shadow-frame)',
       },
       keyframes: {
         pulseDot: {

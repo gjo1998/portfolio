@@ -8,19 +8,30 @@
       name="description"
       content="George K. J is a frontend and full stack developer in Kerala, India, building fast, polished web products with Angular, React and Node.js."
     />
-    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="theme-color" content="#f5f2ec" />
+    <link rel="canonical" href="https://gjo1998.github.io/portfolio/" />
     <link rel="icon" type="image/png" href="%BASE_URL%favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+
+    <!-- Social previews (LinkedIn, WhatsApp, X, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gjo1998.github.io/portfolio/" />
+    <meta property="og:title" content="George K. J — Frontend &amp; Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Fast, polished web products with Angular, React and Node.js. See the Lev Shema case study."
     />
+    <meta property="og:image" content="https://gjo1998.github.io/portfolio/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <script>
-      // Apply the saved theme before first paint to avoid a flash of the wrong theme.
+      // Light is the default look. Apply a saved dark preference before first paint to avoid a flash.
       try {
-        if (localStorage.getItem('portfolio-theme') === 'light') {
-          document.documentElement.classList.add('light')
+        if (localStorage.getItem('portfolio-theme-v2') === 'dark') {
+          document.documentElement.classList.add('dark')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0a0a0b')
         }
       } catch (e) {}
     </script>

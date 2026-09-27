@@ -1,5 +1,11 @@
 const base = import.meta.env.BASE_URL
 
+// Screenshots are exported at 800w and 1440w WebP; the browser picks the right one.
+const responsiveShot = (name) => ({
+  src: `${base}work/${name}-1440.webp`,
+  srcSet: `${base}work/${name}-800.webp 800w, ${base}work/${name}-1440.webp 1440w`,
+})
+
 export const profile = {
   name: 'George K. J',
   title: 'Frontend & Full Stack Developer',
@@ -7,12 +13,13 @@ export const profile = {
   email: 'georgejo1012@gmail.com',
   phone: '+91 7907351637',
   education: 'B.Tech — TOMS College of Engineering (2017–2021)',
-  photo: `${base}george-profile.jpeg`,
+  photo: `${base}george-profile.webp`,
   resume: `${base}GEORGE_2026.pdf`,
   languages: ['English', 'Malayalam', 'Hindi', 'Tamil'],
 }
 
-export const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`
+// A plain mailto works with whatever mail app the visitor uses (Gmail, Outlook, Apple Mail...).
+export const mailtoUrl = `mailto:${profile.email}`
 
 export const navItems = [
   { label: 'Work', href: '#work' },
@@ -31,15 +38,15 @@ export const featuredProject = {
   name: 'Lev Shema',
   url: 'https://levshema.com',
   domain: 'levshema.com',
-  logo: `${base}levshema-logo.jpg`,
+  logo: `${base}levshema-logo.webp`,
   kind: 'Counselling Centre & Training Institute',
   year: '2026',
   role: 'Design & full stack development',
   summary:
     'A complete digital home for a counselling, psychotherapy and training centre in Kerala: a calm public website, a guided online booking flow, and a private admin console that runs the practice day to day.',
   images: {
-    home: { src: `${base}work/levshema-home.png`, alt: 'Lev Shema home page with the headline “Healing minds, strengthening relationships.”' },
-    booking: { src: `${base}work/levshema-book.png`, alt: 'Lev Shema booking flow, step one of four: choosing the kind of support.' },
+    home: { ...responsiveShot('levshema-home'), alt: 'Lev Shema home page with the headline “Healing minds, strengthening relationships.”' },
+    booking: { ...responsiveShot('levshema-book'), alt: 'Lev Shema booking flow, step one of four: choosing the kind of support.' },
   },
   pillars: [
     {
@@ -145,5 +152,4 @@ export const skillGroups = [
 export const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/george-k-j/' },
   { label: 'GitHub', href: 'https://github.com/georgejo1012' },
-  { label: 'Email', href: gmailComposeUrl },
 ]
