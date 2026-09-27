@@ -4,26 +4,33 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Sora', 'sans-serif'],
-        body: ['Manrope', 'sans-serif'],
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        body: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
         page: 'var(--page)',
         surface: 'var(--surface)',
-        'surface-soft': 'var(--surface-soft)',
+        'surface-2': 'var(--surface-2)',
         text: 'var(--text)',
         muted: 'var(--muted)',
+        faint: 'var(--faint)',
         line: 'var(--line)',
+        'line-strong': 'var(--line-strong)',
         accent: 'var(--accent)',
-        'accent-strong': 'var(--accent-strong)',
-        warm: 'var(--warm)',
+        'accent-ink': 'var(--accent-ink)',
       },
       boxShadow: {
-        panel:
-          '0 18px 34px -24px rgba(15, 23, 42, 0.42), 0 8px 18px -16px rgba(15, 118, 110, 0.3)',
+        frame: '0 40px 80px -40px rgba(0, 0, 0, 0.55), 0 12px 24px -16px rgba(0, 0, 0, 0.35)',
       },
-      backgroundImage: {
-        mesh: 'linear-gradient(115deg, rgba(13, 148, 136, 0.14), rgba(249, 115, 22, 0.16))',
+      keyframes: {
+        pulseDot: {
+          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.4', transform: 'scale(0.8)' },
+        },
+      },
+      animation: {
+        'pulse-dot': 'pulseDot 2.4s ease-in-out infinite',
       },
     },
   },

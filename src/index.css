@@ -1,116 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Dark is the default look; `.light` on <html> switches to the paper theme. */
   :root {
-    --page: #edf3f9;
-    --surface: #fefefe;
-    --surface-soft: #e9f2fb;
-    --text: #0f172a;
-    --muted: #4b5d73;
-    --line: #cfdae7;
-    --accent: #0f766e;
-    --accent-strong: #115e59;
-    --warm: #c2410c;
-    color-scheme: light;
-  }
-
-  :root.dark {
-    --page: #09111b;
-    --surface: #0f1a28;
-    --surface-soft: #17283a;
-    --text: #e2e8f0;
-    --muted: #9dafc7;
-    --line: #25384e;
-    --accent: #2dd4bf;
-    --accent-strong: #14b8a6;
-    --warm: #f59e0b;
+    --page: #0a0a0b;
+    --surface: #111113;
+    --surface-2: #18181b;
+    --text: #f3efe7;
+    --muted: #a8a399;
+    --faint: #6f6b64;
+    --line: rgba(243, 239, 231, 0.09);
+    --line-strong: rgba(243, 239, 231, 0.18);
+    --accent: #e3b877;
+    --accent-ink: #1a1408;
+    --glow: rgba(227, 184, 119, 0.1);
     color-scheme: dark;
   }
 
-  * {
-    letter-spacing: 0;
+  :root.light {
+    --page: #f5f2ec;
+    --surface: #fbf9f5;
+    --surface-2: #efebe3;
+    --text: #151412;
+    --muted: #5d5850;
+    --faint: #8f897e;
+    --line: rgba(21, 20, 18, 0.1);
+    --line-strong: rgba(21, 20, 18, 0.2);
+    --accent: #9c6a1c;
+    --accent-ink: #ffffff;
+    --glow: rgba(156, 106, 28, 0.08);
+    color-scheme: light;
   }
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
     @apply m-0 bg-page font-body text-text antialiased;
-    background-image:
-      radial-gradient(1000px 520px at 4% -10%, rgba(15, 118, 110, 0.2), transparent 58%),
-      radial-gradient(900px 480px at 98% 0%, rgba(194, 65, 12, 0.16), transparent 54%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 45%),
-      linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 42px 42px, 42px 42px;
-    background-attachment: fixed;
+    background-image: radial-gradient(1100px 600px at 70% -200px, var(--glow), transparent 70%);
+    background-repeat: no-repeat;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  /* Film grain for depth; kept very faint so it never competes with content. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
   }
 
   a {
     @apply text-inherit no-underline;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @layer components {
   .shell {
-    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
   }
 
-  .section-title {
-    @apply font-display text-3xl font-semibold text-text sm:text-4xl;
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-faint;
   }
 
-  .section-subtitle {
-    @apply mt-3 max-w-3xl text-base text-muted sm:text-lg;
+  .display {
+    @apply font-display font-normal leading-[0.95] tracking-[-0.02em] text-text;
   }
 
-  .panel {
-    @apply relative rounded-xl border border-line bg-surface shadow-panel;
-    background-image: linear-gradient(162deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.44));
-    transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line px-3 py-1 text-xs text-muted;
   }
 
-  :root.dark .panel {
-    background-image: linear-gradient(162deg, rgba(23, 37, 55, 0.9), rgba(15, 26, 40, 0.82));
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition duration-300 hover:gap-3 hover:brightness-110;
   }
 
-  .panel::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    pointer-events: none;
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-line-strong px-6 py-3 text-sm font-medium text-text transition duration-300 hover:border-accent hover:text-accent;
   }
 
-  :root.dark .panel::after {
-    border-color: rgba(148, 163, 184, 0.1);
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms ease;
   }
 
-  .hero-panel {
-    background-image:
-      linear-gradient(120deg, rgba(15, 118, 110, 0.12), transparent 34%),
-      linear-gradient(220deg, rgba(194, 65, 12, 0.1), transparent 42%),
-      linear-gradient(162deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.58));
+  .link-underline:hover {
+    background-size: 100% 1px;
   }
 
-  :root.dark .hero-panel {
-    background-image:
-      linear-gradient(120deg, rgba(20, 184, 166, 0.12), transparent 34%),
-      linear-gradient(220deg, rgba(245, 158, 11, 0.12), transparent 42%),
-      linear-gradient(162deg, rgba(23, 37, 55, 0.95), rgba(15, 26, 40, 0.82));
+  .glass {
+    background: color-mix(in srgb, var(--page) 78%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
   }
 
-  .tag {
-    @apply rounded-md border border-line bg-surface-soft px-3 py-1 text-xs font-semibold uppercase text-muted;
-  }
-
-  .section-offset {
-    @apply py-16 sm:py-20;
+  .section {
+    @apply border-t border-line py-24 sm:py-32;
   }
 }

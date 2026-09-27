@@ -2,9 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="\public\favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>projects</title>
+    <title>George K. J — Frontend &amp; Full Stack Developer</title>
+    <meta
+      name="description"
+      content="George K. J is a frontend and full stack developer in Kerala, India, building fast, polished web products with Angular, React and Node.js."
+    />
+    <meta name="theme-color" content="#0a0a0b" />
+    <link rel="icon" type="image/png" href="%BASE_URL%favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of the wrong theme.
+      try {
+        if (localStorage.getItem('portfolio-theme') === 'light') {
+          document.documentElement.classList.add('light')
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
