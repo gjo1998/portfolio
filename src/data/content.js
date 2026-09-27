@@ -14,7 +14,7 @@ export const profile = {
   phone: '+91 7907351637',
   education: 'B.Tech — TOMS College of Engineering (2017–2021)',
   photo: `${base}george-profile.webp`,
-  resume: `${base}GEORGE_2026.pdf`,
+  resume: `${base}George_K_J_Resume.pdf`,
   languages: ['English', 'Malayalam', 'Hindi', 'Tamil'],
 }
 
@@ -29,7 +29,7 @@ export const navItems = [
 ]
 
 export const heroStats = [
-  { value: '4+', label: 'Years shipping production web apps' },
+  { value: '4.5+', label: 'Years shipping production web apps' },
   { value: 'Angular 12–18', label: 'Plus React, Node.js & NestJS' },
   { value: 'Full stack', label: 'From UI to APIs to data' },
 ]
@@ -92,25 +92,46 @@ export const moreWork = [
   },
 ]
 
+// Inclusive month count, e.g. Mar 2022 – Jun 2023 → "1 yr 4 mos". Ongoing roles count up to today.
+function formatDuration(start, end) {
+  const [sy, sm] = start.split('-').map(Number)
+  const now = new Date()
+  const [ey, em] = end ? end.split('-').map(Number) : [now.getFullYear(), now.getMonth() + 1]
+  const total = (ey - sy) * 12 + (em - sm) + 1
+  const years = Math.floor(total / 12)
+  const months = total % 12
+  const parts = []
+  if (years) parts.push(`${years} yr${years > 1 ? 's' : ''}`)
+  if (months) parts.push(`${months} mo${months > 1 ? 's' : ''}`)
+  return parts.join(' ')
+}
+
 export const experiences = [
   {
     company: 'Lithos Technosoft Pvt Ltd',
     role: 'Associate Angular Developer',
     period: 'Jul 2023 — Present',
+    duration: formatDuration('2023-07'),
     highlights: [
-      'Build and maintain scalable Angular (v17+) modules for production web applications.',
-      'Improved rendering performance through lazy loading and efficient component architecture.',
-      'Migrated legacy Angular code to modern standards; mentor junior developers and review code.',
+      'Develop and maintain scalable web applications with Angular (v17+) and TypeScript.',
+      'Optimise performance through lazy loading and efficient component design.',
+      'Integrate RESTful APIs and improve data handling alongside backend teams.',
+      'Migrate legacy code to modern Angular standards for long-term maintainability.',
+      'Mentor junior developers and take part in code reviews to keep quality high.',
+      'Built two React.js + Node.js web applications using AI-assisted development for fast delivery.',
     ],
   },
   {
     company: 'Cloudium Softwares Pvt Ltd',
     role: 'Junior Software Developer',
     period: 'Mar 2022 — Jun 2023',
+    duration: formatDuration('2022-03', '2023-06'),
     highlights: [
-      'Developed reusable Angular and TypeScript components to speed up feature delivery.',
-      'Implemented asynchronous API workflows with RxJS and OAuth-based authentication.',
-      'Worked in Agile sprints with planning, daily standups and retrospectives.',
+      'Developed and maintained web applications with Angular and TypeScript.',
+      'Built reusable components that sped up feature delivery across the team.',
+      'Integrated RESTful APIs and managed asynchronous data flows with RxJS.',
+      'Contributed to an OAuth-based authentication system.',
+      'Worked in Agile sprints: planning, stand-ups and retrospectives.',
     ],
   },
 ]
@@ -137,15 +158,15 @@ export const services = [
 export const skillGroups = [
   {
     title: 'Frontend',
-    skills: ['Angular (v12–v18)', 'React', 'TypeScript', 'JavaScript (ES6+)', 'RxJS & Signals', 'Tailwind CSS', 'Angular Material', 'Vue.js'],
+    skills: ['Angular (v12–v18)', 'React', 'TypeScript', 'JavaScript (ES6+)', 'RxJS & Signals', 'HTML5 & CSS3', 'Tailwind CSS', 'Angular Material', 'Bootstrap', 'Vue.js'],
   },
   {
     title: 'Backend & data',
-    skills: ['Node.js', 'NestJS', 'Express', 'REST APIs', 'Firebase / Firestore', 'MySQL', 'MongoDB', 'OAuth'],
+    skills: ['Node.js', 'NestJS', 'Express', 'REST APIs', 'Firebase / Firestore', 'MySQL', 'MongoDB', 'OAuth', 'MVC architecture'],
   },
   {
     title: 'Practice',
-    skills: ['Performance optimisation', 'Reusable component design', 'Testing & debugging', 'Agile delivery', 'Git', 'Code review', 'Mentoring'],
+    skills: ['Performance optimisation', 'Reusable component design', 'Testing & debugging', 'AI-assisted development', 'Agile / Scrum', 'Git', 'Code review', 'Mentoring'],
   },
 ]
 
