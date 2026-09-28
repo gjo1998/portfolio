@@ -29,3 +29,9 @@ Empty fields are hidden on the site; `[X]`/`[N]` placeholders are shown, and `np
 ## Deploy
 
 Pushing to `main` builds the site and deploys it to GitHub Pages via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
+
+## Résumé
+
+The downloadable résumé is `public/George_K_J_Resume_2026.pdf`, generated from [`resume/resume.html`](resume/resume.html)
+(open it in Chrome/Edge → Print → Save as PDF, A4, no headers/footers). If you replace the PDF with a new file,
+give it a new name and update `profile.resume` in `src/data/content.js`, so browsers don't serve a cached old copy.

@@ -32,7 +32,7 @@ export const profile = {
   hidePhoneNumber: false,
   education: 'B.Tech — TOMS College of Engineering (2017–2021)',
   photo: `${base}george-profile.webp`,
-  resume: `${base}George_K_J_Resume.pdf`,
+  resume: `${base}George_K_J_Resume_2026.pdf`,
   languages: ['English', 'Malayalam', 'Hindi', 'Tamil'],
   linkedin: 'https://www.linkedin.com/in/george-k-j/',
   // Must match the GitHub account that hosts this repo (github.com/gjo1998/portfolio),
