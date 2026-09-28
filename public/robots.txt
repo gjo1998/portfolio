@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gjo1998.github.io/portfolio/sitemap.xml

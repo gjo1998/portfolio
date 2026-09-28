@@ -26,7 +26,34 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "George K. J",
+        "jobTitle": "Frontend & Full Stack Developer",
+        "url": "https://gjo1998.github.io/portfolio/",
+        "image": "https://gjo1998.github.io/portfolio/george-profile.webp",
+        "email": "mailto:georgejo1012@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kannur",
+          "addressRegion": "Kerala",
+          "addressCountry": "IN"
+        },
+        "sameAs": ["https://www.linkedin.com/in/george-k-j/", "https://github.com/gjo1998"],
+        "knowsAbout": ["Angular", "React", "TypeScript", "Node.js", "NestJS", "Web performance"]
+      }
+    </script>
+
     <script>
+      // `js` lets reveal animations hide content; without it (no JS, blocked bundle) everything shows.
+      // Safety net: if the app hasn't started within 4s, drop the class so nothing stays hidden.
+      document.documentElement.classList.add('js')
+      setTimeout(function () {
+        if (!window.__portfolioReady) document.documentElement.classList.remove('js')
+      }, 4000)
+
       // Light is the default look. Apply a saved dark preference before first paint to avoid a flash.
       try {
         if (localStorage.getItem('portfolio-theme-v2') === 'dark') {

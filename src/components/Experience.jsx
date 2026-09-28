@@ -22,7 +22,8 @@ export function Experience() {
             <Reveal as="li" key={job.company} delay={0.08 * index} className="border-t border-line py-10 first:border-t-0 first:pt-0 lg:first:pt-2">
               <div className="flex flex-wrap items-baseline justify-between gap-3">
                 <h3 className="font-display text-3xl sm:text-4xl">{job.role}</h3>
-                <span className="font-mono text-xs text-faint">
+                {/* Duration counts to today, so it can differ from the build-time HTML by a month. */}
+                <span className="font-mono text-xs text-faint" suppressHydrationWarning>
                   {job.period} · {job.duration}
                 </span>
               </div>

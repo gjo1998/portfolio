@@ -1,16 +1,42 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
-const ease = [0.22, 1, 0.36, 1]
+/*
+ * Scroll reveal that fails safe: content is visible by default and is only hidden when the inline
+ * head script has put `js` on <html> (see index.html and the .reveal rules in index.css). With no JS,
+ * in print, or under prefers-reduced-motion, everything simply shows.
+ * `onMount` elements (the hero) use a CSS-only rise that starts on first paint, without waiting for React.
+ */
+export function Reveal({ as: Tag = 'div', delay = 0, y = 28, className = '', children, onMount = false }) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
 
-export function Reveal({ as = 'div', delay = 0, y = 28, className, children, onMount = false }) {
-  const Tag = motion[as]
-  const target = { opacity: 1, y: 0, transition: { duration: 0.9, delay, ease } }
+  useEffect(() => {
+    if (onMount) return
+    const el = ref.current
+    if (!el || !('IntersectionObserver' in window)) {
+      setVisible(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '0px 0px -10% 0px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [onMount])
+
+  const base = onMount ? 'reveal-mount' : `reveal${visible ? ' is-visible' : ''}`
 
   return (
     <Tag
-      className={className}
-      initial={{ opacity: 0, y }}
-      {...(onMount ? { animate: target } : { whileInView: target, viewport: { once: true, amount: 0.2 } })}
+      ref={ref}
+      className={`${base} ${className}`}
+      style={{ '--reveal-delay': `${delay}s`, '--reveal-y': `${y}px` }}
     >
       {children}
     </Tag>

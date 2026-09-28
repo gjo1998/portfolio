@@ -100,13 +100,13 @@ export function Header({ theme, onToggleTheme }) {
             Let&rsquo;s talk
             <ArrowUpRight size={15} />
           </a>
-          <button type="button" onClick={onToggleTheme} aria-label={themeLabel} className={`${iconButton} ml-1`}>
+          <button type="button" onClick={onToggleTheme} aria-label={themeLabel} className={`${iconButton} theme-toggle ml-1`}>
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
-          <button type="button" onClick={onToggleTheme} aria-label={themeLabel} className={iconButton}>
+          <button type="button" onClick={onToggleTheme} aria-label={themeLabel} className={`${iconButton} theme-toggle`}>
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
           <button

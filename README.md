@@ -10,19 +10,21 @@ Features a case study of [Lev Shema](https://levshema.com), a counselling centre
 
 - React 19 + Vite
 - Tailwind CSS with theme tokens (light by default, with a dark theme toggle)
-- Framer Motion for scroll reveals (respects `prefers-reduced-motion`)
-- Self-hosted fonts via Fontsource (Instrument Serif, Inter Tight, JetBrains Mono)
+- Pre-rendered to static HTML at build time (`react-dom/server`, see `scripts/prerender.js`), then hydrated
+- CSS scroll reveals that fail safe: content is visible without JS, in print and with reduced motion
+- Self-hosted fonts via Fontsource (Instrument Serif, Inter Tight, JetBrains Mono) with metric-matched fallbacks (no layout shift)
 
 ## Develop
 
 ```bash
 npm install
 npm run dev      # local dev server
-npm run build    # production build to dist/
+npm run build    # client build + SSR build + prerender to dist/ (also writes dist/404.html)
 npm run lint
 ```
 
 All copy lives in [`src/data/content.js`](src/data/content.js). Edit it there instead of in the components.
+Empty fields are hidden on the site; `[X]`/`[N]` placeholders are shown, and `npm run dev` lists any that remain in the console.
 
 ## Deploy
 

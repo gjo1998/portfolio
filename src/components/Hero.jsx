@@ -36,6 +36,10 @@ export function Hero() {
                 </a>
                 .
               </p>
+              <p className="mt-5 flex gap-3 text-base text-text sm:text-lg">
+                <span aria-hidden="true" className="mt-3 h-px w-6 flex-none bg-accent" />
+                {profile.specialisation}
+              </p>
             </Reveal>
 
             <Reveal onMount delay={0.26} className="mt-10 flex flex-wrap items-center gap-3">
@@ -59,6 +63,8 @@ export function Hero() {
                   alt={`Portrait of ${profile.name}`}
                   width="520"
                   height="693"
+                  fetchPriority="high"
+                  decoding="async"
                   className="aspect-[4/5] w-full object-cover"
                 />
               </div>
@@ -70,7 +76,7 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <Reveal onMount delay={0.36} className="mt-14 grid gap-px sm:mt-20 overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+        <Reveal onMount delay={0.36} className="mt-14 grid gap-px overflow-hidden sm:mt-20 rounded-2xl border border-line bg-line sm:grid-cols-3">
           {heroStats.map((stat) => (
             <div key={stat.label} className="bg-page p-6 lg:p-8">
               <p className="display text-4xl lg:text-5xl">{stat.value}</p>

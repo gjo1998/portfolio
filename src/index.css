@@ -1,3 +1,33 @@
+/* Metric-matched fallbacks: while the web fonts load, text takes the same space, so nothing shifts
+   when they swap in. Values computed from the font files (size-adjust = average glyph width ratio). */
+/* Inter Tight → Arial */
+@font-face {
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial');
+  size-adjust: 95.46%;
+  ascent-override: 101.48%;
+  descent-override: 25.27%;
+  line-gap-override: 0.00%;
+}
+/* Instrument Serif → Times New Roman */
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Times New Roman');
+  size-adjust: 82.44%;
+  ascent-override: 120.09%;
+  descent-override: 37.60%;
+  line-gap-override: 0.00%;
+}
+/* JetBrains Mono → Courier New */
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Courier New');
+  size-adjust: 99.98%;
+  ascent-override: 102.02%;
+  descent-override: 30.00%;
+  line-gap-override: 0.00%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -51,15 +81,23 @@
     font-feature-settings: 'ss01', 'cv11';
   }
 
-  /* Film grain for depth; kept very faint so it never competes with content. */
+  /* Film grain for depth: a small pre-rendered tile (no live SVG filter), kept very faint.
+     Skipped on phones and for reduced-motion users, where it adds cost but little value. */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     z-index: 60;
     pointer-events: none;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    background-image: url('./assets/grain.webp');
+    background-size: 128px 128px;
+  }
+
+  @media (max-width: 640px), (prefers-reduced-motion: reduce) {
+    body::before {
+      content: none;
+    }
   }
 
   ::selection {
@@ -80,6 +118,69 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+  }
+
+  /* Reveal animations only hide content when JS is confirmed running (`js` class from the head script). */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-y, 28px));
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero: transform-only rise, so the text is painted immediately (good for LCP) and never hidden. */
+  .js .reveal-mount {
+    animation: reveal-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  @keyframes reveal-rise {
+    from {
+      transform: translateY(var(--reveal-y, 28px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal,
+    .js .reveal-mount {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: none;
+    }
+  }
+
+  @media print {
+    .reveal,
+    .reveal-mount {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      animation: none !important;
+    }
+
+    body::before,
+    header,
+    .theme-toggle,
+    .no-print {
+      display: none !important;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .section {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   }
 }

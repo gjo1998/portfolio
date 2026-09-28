@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { ArrowUpRight, Check, Copy, FileText } from 'lucide-react'
-import { mailtoUrl, profile, socialLinks } from '../data/content'
+import { ArrowUpRight, Check, Copy, FileText, Phone } from 'lucide-react'
+import { formspreeEndpoint, mailtoUrl, profile, socialLinks } from '../data/content'
+import { ContactForm } from './ContactForm'
 import { Reveal, SectionLabel } from './Reveal'
 
 function CopyEmailButton() {
@@ -29,7 +30,31 @@ function CopyEmailButton() {
   )
 }
 
+const telHref = `tel:${profile.phone.replace(/\s/g, '')}`
+
+// With hidePhoneNumber on, the number is left out of the pre-rendered HTML and shown only on request.
+function PhoneLink() {
+  const [shown, setShown] = useState(!profile.hidePhoneNumber)
+
+  if (!shown) {
+    return (
+      <button type="button" onClick={() => setShown(true)} className="inline-flex min-h-11 items-center gap-2 text-text">
+        <Phone size={14} aria-hidden="true" />
+        <span className="link-underline">Show number</span>
+      </button>
+    )
+  }
+
+  return (
+    <a href={telHref} className="inline-flex min-h-11 items-center">
+      <span className="link-underline text-text">{profile.phone}</span>
+    </a>
+  )
+}
+
 export function Contact() {
+  const hasForm = Boolean(formspreeEndpoint)
+
   return (
     <section id="contact" className="section pb-16 sm:pb-20">
       <div className="shell">
@@ -48,9 +73,19 @@ export function Contact() {
               Open to full-time roles, freelance builds and long-term client work. Tell me what you&rsquo;re
               making and I&rsquo;ll reply within a day.
             </p>
+            {hasForm && (
+              <>
+                <div className="mt-8 max-w-xl">
+                  <ContactForm />
+                </div>
+                <p className="eyebrow mt-12">Prefer email?</p>
+              </>
+            )}
             <a
               href={mailtoUrl}
-              className="group mt-8 inline-flex items-center gap-3 font-display text-[clamp(1.5rem,6.5vw,3rem)] leading-tight transition-colors hover:text-accent"
+              className={`group inline-flex items-center gap-3 font-display leading-tight transition-colors hover:text-accent ${
+                hasForm ? 'mt-3 text-[clamp(1.5rem,5vw,2.25rem)]' : 'mt-8 text-[clamp(1.5rem,6.5vw,3rem)]'
+              }`}
             >
               <span className="link-underline break-words">{profile.email}</span>
               <ArrowUpRight className="flex-none transition duration-300 group-hover:rotate-45" size={28} />
@@ -82,9 +117,7 @@ export function Contact() {
               <p className="eyebrow">Direct</p>
               <ul className="mt-3">
                 <li>
-                  <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="inline-flex min-h-11 items-center">
-                    <span className="link-underline text-text">{profile.phone}</span>
-                  </a>
+                  <PhoneLink />
                 </li>
                 <li className="py-2 text-muted">{profile.location}</li>
               </ul>
