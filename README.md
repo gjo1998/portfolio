@@ -24,7 +24,7 @@ npm run lint
 ```
 
 All copy lives in [`src/data/content.js`](src/data/content.js). Edit it there instead of in the components.
-Empty fields are hidden on the site; `[X]`/`[N]` placeholders are shown, and `npm run dev` lists any that remain in the console.
+Empty fields are hidden on the site; square-bracket placeholders are shown, and `npm run dev` lists any that remain in the console.
 
 ## Deploy
 

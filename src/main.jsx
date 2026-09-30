@@ -26,7 +26,7 @@ else createRoot(root).render(app)
 window.__portfolioReady = true
 
 if (import.meta.env.DEV) {
-  // List [X]/[N] placeholders still left in content.js, so they don't reach the live site.
+  // List square-bracket placeholders (e.g. a bracketed capital letter) still left in content.js, so they don't reach the live site.
   import('./data/content.js').then((content) => {
     const found = []
     const walk = (value, path) => {

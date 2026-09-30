@@ -9,7 +9,7 @@ export function Hero() {
         <Reveal onMount className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs text-muted">
             <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-status" />
-            Available for new projects
+            Open to full-time roles
           </span>
           <span className="eyebrow">{profile.location}</span>
         </Reveal>

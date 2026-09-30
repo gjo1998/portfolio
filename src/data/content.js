@@ -4,7 +4,7 @@ const base = import.meta.env.BASE_URL
  * FILL-IN GUIDE
  * - Empty strings, empty arrays and `null` are "not filled in yet": the matching block is simply
  *   not rendered, so the live site never shows an empty section.
- * - Text containing [X] or [N] IS rendered as-is. Replace those with real numbers before pushing;
+ * - Placeholder text (a capital letter in square brackets) IS rendered as-is. Replace it before pushing;
  *   `npm run dev` lists any that remain in the browser console.
  * - Images go in /public (e.g. public/work/...). Reference them as `${base}work/file.webp`.
  */
@@ -56,7 +56,7 @@ export const navItems = [
 
 export const heroStats = [
   { value: '4.5+', label: 'Years shipping production web apps' },
-  { value: '[N]', label: 'Production apps shipped' },
+  { value: 'Angular · React · Node', label: 'Production apps across product teams and clients' },
   { value: 'Full stack', label: 'From UI to APIs to data' },
 ]
 
@@ -136,7 +136,7 @@ export const moreWork = [
     title: 'Enterprise Angular platform modernisation',
     stack: ['Angular', 'TypeScript', 'RxJS', 'REST APIs'],
     summary:
-      'Cut initial load by [X]% by moving [N] legacy Angular modules to lazy-loaded standalone components, with shared UI and cleaner API integration.',
+      'Moved legacy Angular modules to lazy-loaded standalone components, cutting initial load time, with shared UI and cleaner API integration.',
     // One-line measurable result, shown as a highlighted line when filled in.
     result: '',
     // Optional: { href: 'https://…', label: 'Live site' | 'GitHub' }
@@ -148,7 +148,7 @@ export const moreWork = [
     title: 'React + Node web applications',
     stack: ['React', 'Node.js', 'Tailwind CSS', 'MySQL'],
     summary:
-      'Shipped two React + Node.js applications to production in [X] weeks, with API-backed flows, responsive UI and a reusable component system.',
+      'Shipped two React + Node.js applications to production, with API-backed flows, responsive UI and a reusable component system.',
     result: '',
     link: null,
     image: null,
@@ -157,7 +157,7 @@ export const moreWork = [
     title: 'Authentication & API workflow suite',
     stack: ['Angular', 'OAuth', 'Node.js', 'Express'],
     summary:
-      'Secured sign-in for [N] active users with OAuth, protected routes and resilient async API handling across business applications.',
+      'Secured sign-in for active business users with OAuth, protected routes and resilient async API handling across applications.',
     result: '',
     link: null,
     image: null,
@@ -230,7 +230,7 @@ export const services = [
 export const skillGroups = [
   {
     title: 'Frontend',
-    skills: ['Angular (v17–v20)', 'React', 'TypeScript', 'JavaScript (ES6+)', 'RxJS & Signals', 'HTML5 & CSS3', 'Tailwind CSS', 'Angular Material', 'Bootstrap', 'Vue.js'],
+    skills: ['Angular (v12–v20)', 'React', 'TypeScript', 'JavaScript (ES6+)', 'RxJS & Signals', 'HTML5 & CSS3', 'Tailwind CSS', 'Angular Material', 'Bootstrap', 'Vue.js'],
   },
   {
     title: 'Backend & data',

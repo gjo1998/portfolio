@@ -36,7 +36,7 @@ function App() {
           <p className="eyebrow" suppressHydrationWarning>
             © {new Date().getFullYear()} {profile.name}
           </p>
-          <a href="#top" className="eyebrow transition-colors hover:text-accent">
+          <a href="#top" className="eyebrow inline-flex min-h-11 items-center transition-colors hover:text-accent">
             Back to top ↑
           </a>
         </div>
