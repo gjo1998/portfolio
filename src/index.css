@@ -52,7 +52,10 @@
     color-scheme: light;
   }
 
-  :root.dark {
+  /* Dark tokens, used by the whole page in dark theme and by `.tone-dark` sections (the cinematic hero
+     and About) in both themes. */
+  :root.dark,
+  .tone-dark {
     --page: #0a0a0b;
     --surface: #111113;
     --surface-2: #18181b;
@@ -67,6 +70,11 @@
     --status: #34d399;
     --shadow-frame: 0 40px 80px -40px rgba(0, 0, 0, 0.55), 0 12px 24px -16px rgba(0, 0, 0, 0.35);
     color-scheme: dark;
+  }
+
+  .tone-dark {
+    background-color: var(--page);
+    color: var(--text);
   }
 
   html {
@@ -178,6 +186,23 @@
       background: #fff;
     }
 
+    /* Browsers drop background colours when printing, so print dark sections with light-theme ink. */
+    .tone-dark {
+      color-scheme: light;
+      --page: #fff;
+      --surface: #fff;
+      --text: #151412;
+      --muted: #5d5850;
+      --faint: #6e695f;
+      --line: rgba(21, 20, 18, 0.15);
+      --line-strong: rgba(21, 20, 18, 0.25);
+      --accent: #87591a;
+    }
+
+    .hero-photo {
+      display: none !important;
+    }
+
     .section {
       padding-top: 2rem;
       padding-bottom: 2rem;
@@ -230,5 +255,21 @@
 
   .section {
     @apply border-t border-line py-24 sm:py-32;
+  }
+
+  /* Hero photo scrim. Phones: the photo sits above the text, so fade its bottom into the page and darken
+     the top for the header. Desktop: fade left into the text column so it stays at AA contrast. */
+  .hero-scrim {
+    background:
+      linear-gradient(to top, var(--page) 0%, transparent 45%),
+      linear-gradient(to bottom, color-mix(in srgb, var(--page) 70%, transparent) 0%, transparent 30%);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-scrim {
+      background:
+        linear-gradient(to top, var(--page) 0%, transparent 22%),
+        linear-gradient(to right, var(--page) 0%, color-mix(in srgb, var(--page) 55%, transparent) 38%, transparent 75%);
+    }
   }
 }

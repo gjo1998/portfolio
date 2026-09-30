@@ -42,7 +42,7 @@ export function FeaturedProject() {
     <section id="work" className="section">
       <div className="shell">
         <Reveal>
-          <SectionLabel index="01">Selected work</SectionLabel>
+          <SectionLabel index="02">Selected work</SectionLabel>
           <h2 className="display mt-8 text-5xl sm:text-6xl">
             Recent <em className="text-accent">client work.</em>
           </h2>

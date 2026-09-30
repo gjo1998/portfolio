@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
  * in print, or under prefers-reduced-motion, everything simply shows.
  * `onMount` elements (the hero) use a CSS-only rise that starts on first paint, without waiting for React.
  */
-export function Reveal({ as: Tag = 'div', delay = 0, y = 28, className = '', children, onMount = false }) {
+export function Reveal({ as: Tag = 'div', delay = 0, y = 28, className = '', children, onMount = false, ...rest }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
 
@@ -34,6 +34,7 @@ export function Reveal({ as: Tag = 'div', delay = 0, y = 28, className = '', chi
 
   return (
     <Tag
+      {...rest}
       ref={ref}
       className={`${base} ${className}`}
       style={{ '--reveal-delay': `${delay}s`, '--reveal-y': `${y}px` }}

@@ -32,11 +32,17 @@ function useActiveSection() {
 
 export function Header({ theme, onToggleTheme }) {
   const [isScrolled, setIsScrolled] = useState(false)
+  // True while the header sits over the dark opening (hero + About); it then takes the dark tokens too.
+  const [onDark, setOnDark] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const active = useActiveSection()
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 24)
+      const darkEnd = document.getElementById('about')?.getBoundingClientRect().bottom ?? 0
+      setOnDark(darkEnd > 40)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -60,12 +66,12 @@ export function Header({ theme, onToggleTheme }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${onDark ? 'tone-dark' : ''} ${
         menuOpen
           ? 'border-b border-line bg-page'
           : isScrolled
             ? 'glass border-b border-line'
-            : 'border-b border-transparent'
+            : 'border-b border-transparent bg-transparent'
       }`}
     >
       <div className="shell flex h-16 items-center justify-between gap-6 sm:h-20">

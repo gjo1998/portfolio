@@ -31,7 +31,12 @@ export const profile = {
   // true: the number stays out of the page HTML and appears only after a "Show number" click (reduces scraping).
   hidePhoneNumber: false,
   education: 'B.Tech — TOMS College of Engineering (2017–2021)',
-  photo: `${base}george-profile.webp`,
+  degree: { title: 'Bachelor of Technology (B.Tech)', school: 'TOMS College of Engineering', period: '2017 — 2021', startYear: '2017' },
+  // Hero portrait: 640w for phones, 1000w for the half-screen desktop hero.
+  photo: {
+    src: `${base}george-portrait-1000.webp`,
+    srcSet: `${base}george-portrait-640.webp 640w, ${base}george-portrait-1000.webp 1000w`,
+  },
   resume: `${base}George_K_J_Resume_2026.pdf`,
   languages: ['English', 'Malayalam', 'Hindi', 'Tamil'],
   linkedin: 'https://www.linkedin.com/in/george-k-j/',
@@ -48,11 +53,20 @@ export const formspreeEndpoint = ''
 export const mailtoUrl = `mailto:${profile.email}`
 
 export const navItems = [
+  { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Résumé', href: '#resume' },
   { label: 'Contact', href: '#contact' },
 ]
+
+// About section copy (from the CV summary).
+export const about = {
+  bio: [
+    'I’m a frontend-focused full stack developer with 4.5+ years of designing, building and optimising scalable, high-performance web applications.',
+    'My core is Angular, TypeScript and RxJS, with hands-on React and backend work in Node.js, NestJS, Express, MySQL and MongoDB. I modernise legacy codebases, build reusable component libraries and use techniques like lazy loading to keep apps fast.',
+    'I mentor junior developers, care about code review, and work closely with backend and product teams in Agile environments to ship reliable, business-focused software.',
+  ],
+}
 
 export const heroStats = [
   { value: '4.5+', label: 'Years shipping production web apps' },
@@ -183,6 +197,7 @@ export const experiences = [
     company: 'Lithos Technosoft Pvt Ltd',
     role: 'Associate Angular Developer',
     period: 'Jul 2023 — Present',
+    startYear: '2023',
     duration: formatDuration('2023-07'),
     highlights: [
       'Develop and maintain scalable web applications with Angular (v17+) and TypeScript.',
@@ -197,6 +212,7 @@ export const experiences = [
     company: 'Cloudium Softwares Pvt Ltd',
     role: 'Junior Software Developer',
     period: 'Mar 2022 — Jun 2023',
+    startYear: '2022',
     duration: formatDuration('2022-03', '2023-06'),
     highlights: [
       'Developed and maintained web applications with Angular and TypeScript.',

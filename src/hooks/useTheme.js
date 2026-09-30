@@ -2,7 +2,6 @@ import { useSyncExternalStore } from 'react'
 
 // v2: light became the default; the old key saved "dark" for every visitor, so it is ignored.
 const STORAGE_KEY = 'portfolio-theme-v2'
-const THEME_COLORS = { light: '#f5f2ec', dark: '#0a0a0b' }
 
 // The `dark` class on <html> is the source of truth: the head script sets it before first paint,
 // and toggling updates it. Reading it via useSyncExternalStore keeps the pre-rendered HTML ('light')
@@ -21,7 +20,6 @@ export function useTheme() {
   const toggleTheme = () => {
     const next = getSnapshot() === 'dark' ? 'light' : 'dark'
     document.documentElement.classList.toggle('dark', next === 'dark')
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[next])
     try {
       // Only an explicit choice is remembered, so the light default stays the default.
       window.localStorage.setItem(STORAGE_KEY, next)

@@ -1,10 +1,10 @@
-import { Capabilities } from './components/Capabilities'
+import { About } from './components/About'
 import { Contact } from './components/Contact'
-import { Experience } from './components/Experience'
 import { FeaturedProject } from './components/FeaturedProject'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { MoreWork } from './components/MoreWork'
+import { Resume } from './components/Resume'
 import { profile } from './data/content'
 import { useTheme } from './hooks/useTheme'
 
@@ -23,10 +23,10 @@ function App() {
 
       <main>
         <Hero />
+        <About />
         <FeaturedProject />
         <MoreWork />
-        <Experience />
-        <Capabilities />
+        <Resume />
         <Contact />
       </main>
 

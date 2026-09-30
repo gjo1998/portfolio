@@ -6,7 +6,8 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 const dist = resolve('dist')
-const ssrDir = resolve('dist-ssr')
+// Temporary SSR bundle lives under node_modules/.cache, which editors and indexers don't watch or lock.
+const ssrDir = resolve('node_modules/.cache/prerender')
 const ssrEntry = resolve(ssrDir, 'entry-server.js')
 
 if (!existsSync(ssrEntry)) throw new Error(`Missing ${ssrEntry}; run the SSR build first.`)
